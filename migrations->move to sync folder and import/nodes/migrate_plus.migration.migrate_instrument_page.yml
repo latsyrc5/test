@@ -1,0 +1,163 @@
+langcode: en
+status: true
+dependencies:
+  enforced:
+    module:
+      - migrate_plus
+      - migrate_tools
+      - migrate_media_handler
+      - ws_transformations
+id: migrate_instrument_page
+class: null
+field_plugin_method: null
+cck_plugin_method: null
+migration_tags:
+  - 'Drupal 7'
+  - node
+migration_group: webservices
+label: 'Migrate Node: Instrument Pages from Drupal 7.'
+source:
+  plugin: d7_node
+  scheme: public
+  key: drupal7
+  node_type: instrument
+process:
+  nid: tnid
+  type:
+    plugin: default_value
+    default_value: instrument
+  title: title
+  status: status
+  created: created
+  uid:
+    -
+      plugin: migration_lookup
+      migration: migrate_users
+      source: node_uid
+      no_stub: true
+    -
+      plugin: default_value
+      default_value: 1
+  changed: changed
+  promote: promote
+  sticky: sticky
+  revision_log: log
+  path/alias: alias
+  path/pathauto:
+    plugin: default_value
+    default_value: false
+  field_instrument_image:
+    plugin: sub_process
+    source: field_instrument_image
+    process:
+      target_id: fid
+      alt: alt
+      title: title
+      width: width
+      height: height
+  field_building: field_building
+  field_funding_source: field_funding_source
+  field_manufacturer: field_manufacturer
+  field_availability:
+    plugin: migration_lookup
+    migration: migrate_equipment_avail_terms
+    source: field_availability
+  field_equipment_category:
+    plugin: migration_lookup
+    migration: migrate_equipment_category_terms
+    source: field_equipment_category
+  field_pi:
+    plugin: sub_process
+    source: field_ubc_project_lead
+    process:
+      target_id:
+        plugin: migration_lookup
+        migration: migrate_profile
+        source: target_id
+  field_reservation_system: field_reservation_system
+  field_responsible_contact: field_responsible_contact
+  field_room_number: field_room_number
+  field_notes:
+    plugin: sub_process
+    source: field_notes
+    process:
+      format:
+        plugin: default_value
+        default_value: simple
+      summary: summary
+      value:
+        -
+          plugin: dom
+          method: import
+          source: value
+        -
+          plugin: dom_str_replace
+          mode: attribute
+          xpath: //img
+          attribute_options:
+            name: src
+          search: sites/bpi.ubc.ca/files
+          replace: sites/default/files
+        -
+          plugin: dom_str_replace
+          mode: attribute
+          xpath: //a
+          attribute_options:
+            name: href
+          search: sites/bpi.ubc.ca/files
+          replace: sites/default/files
+        -
+          plugin: dom_inline_image_handler
+        -
+          plugin: dom
+          method: export
+        -
+          plugin: ws_transformations
+          method: ws_transformations
+  body:
+    plugin: sub_process
+    source: body
+    process:
+      format:
+        plugin: default_value
+        default_value: filtered_text
+      summary: summary
+      value:
+        -
+          plugin: dom
+          method: import
+          source: value
+        -
+          plugin: dom_str_replace
+          mode: attribute
+          xpath: //img
+          attribute_options:
+            name: src
+          search: sites/bpi.ubc.ca/files
+          replace: sites/default/files
+        -
+          plugin: dom_str_replace
+          mode: attribute
+          xpath: //a
+          attribute_options:
+            name: href
+          search: sites/bpi.ubc.ca/files
+          replace: sites/default/files
+        -
+          plugin: dom_inline_image_handler
+        -
+          plugin: dom
+          method: export
+        -
+          plugin: ws_transformations
+          method: ws_transformations
+destination:
+  plugin: 'entity:node'
+  default_bundle: instrument
+migration_dependencies:
+  optional:
+    - migrate_public_files
+    - migrate_profile
+    - migrate_equipment_avail_terms
+    - migrate_equipment_category_terms
+    - migrate_users

@@ -1,0 +1,26 @@
+name: vpr
+type: theme
+core: 8.x
+base theme: kraken
+description: 'vpr is a Drupal base theme that provides integration with the UBC CLF (<a href="https://clf.ubc.ca">Common Look and Feel</a>) for UBC-branded units. <em>We recommend against using this theme for any customizations or modifications</em>. If you require a customized UBC CLF theme, please consider the <a href="https://github.com/ubc-web-services/clf">Drupal CLF theme</a>'
+package: vpr
+core_version_requirement: ^8 || ^9
+
+libraries:
+  - vpr/global
+
+regions:
+  primary_menu: 'Primary menu'
+  secondary_menu: 'Secondary menu'
+  alert_region: 'Alert region'
+  masthead: 'Masthead'
+  breadcrumb: 'Breadcrumb'
+  heading: 'Heading'
+  help: 'Help'
+  highlighted: 'Highlighted'
+  content: 'Content'
+  sidebar_primary: 'Primary Sidebar'
+  sidebar_secondary: 'Secondary Sidebar'
+  secondary_content: 'Secondary Content'
+  prefooter: 'Pre-Footer'
+  drawer: 'Off Canvas Drawer'

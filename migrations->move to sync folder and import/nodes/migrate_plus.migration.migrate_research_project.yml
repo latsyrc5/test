@@ -1,0 +1,332 @@
+langcode: en
+status: true
+dependencies:
+  enforced:
+    module:
+      - migrate_plus
+      - migrate_tools
+      - migrate_media_handler
+      - ws_transformations
+id: migrate_research_project
+class: null
+field_plugin_method: null
+cck_plugin_method: null
+migration_tags:
+  - 'Drupal 7'
+  - node
+migration_group: webservices
+label: 'Migrate Node: Research Projects from Drupal 7.'
+source:
+  plugin: d7_node
+  scheme: public
+  key: drupal7
+  node_type: project
+process:
+  nid: tnid
+  type:
+    plugin: default_value
+    default_value: ubc_research_project
+  title: title
+  status: status
+  created: created
+  uid:
+    -
+      plugin: migration_lookup
+      migration: migrate_users
+      source: node_uid
+      no_stub: true
+    -
+      plugin: default_value
+      default_value: 1
+  changed: changed
+  promote: promote
+  sticky: sticky
+  revision_log: log
+  path/alias: alias
+  path/pathauto:
+    plugin: default_value
+    default_value: false
+  body:
+    plugin: sub_process
+    source: body
+    process:
+      format:
+        plugin: default_value
+        default_value: filtered_text
+      summary: summary
+      value:
+        -
+          plugin: dom
+          method: import
+          source: value
+        -
+          plugin: dom_str_replace
+          mode: attribute
+          xpath: //img
+          attribute_options:
+            name: src
+          search: sites/bpi.ubc.ca/files
+          replace: sites/default/files
+        -
+          plugin: dom_str_replace
+          mode: attribute
+          xpath: //a
+          attribute_options:
+            name: href
+          search: sites/bpi.ubc.ca/files
+          replace: sites/default/files
+        -
+          plugin: dom_str_replace
+          mode: attribute
+          xpath: //p
+          attribute_options:
+            name: class
+          search: text--lead
+          replace: 'text-lead text-ubc-blue-sea'
+        -
+          plugin: dom_inline_doc_handler
+        -
+          plugin: dom_inline_image_handler
+        -
+          plugin: dom
+          method: export
+        -
+          plugin: ws_transformations
+          method: ws_transformations
+  field_r_project_other_info:
+    plugin: sub_process
+    source: field_working_group_members
+    process:
+      format:
+        plugin: default_value
+        default_value: filtered_text
+      value:
+        -
+          plugin: dom
+          method: import
+          source: value
+        -
+          plugin: dom_str_replace
+          mode: attribute
+          xpath: //img
+          attribute_options:
+            name: src
+          search: sites/bpi.ubc.ca/files
+          replace: sites/default/files
+        -
+          plugin: dom_str_replace
+          mode: attribute
+          xpath: //a
+          attribute_options:
+            name: href
+          search: sites/bpi.ubc.ca/files
+          replace: sites/default/files
+        -
+          plugin: dom_str_replace
+          mode: attribute
+          xpath: //p
+          attribute_options:
+            name: class
+          search: text--lead
+          replace: 'text-lead text-ubc-blue-sea'
+        -
+          plugin: dom_inline_doc_handler
+        -
+          plugin: dom_inline_image_handler
+        -
+          plugin: dom
+          method: export
+        -
+          plugin: ws_transformations
+          method: ws_transformations
+  field_r_project_funder_info:
+    plugin: sub_process
+    source: field_funder_information
+    process:
+      format:
+        plugin: default_value
+        default_value: filtered_text
+      value:
+        -
+          plugin: dom
+          method: import
+          source: value
+        -
+          plugin: dom_str_replace
+          mode: attribute
+          xpath: //img
+          attribute_options:
+            name: src
+          search: sites/bpi.ubc.ca/files
+          replace: sites/default/files
+        -
+          plugin: dom_str_replace
+          mode: attribute
+          xpath: //a
+          attribute_options:
+            name: href
+          search: sites/bpi.ubc.ca/files
+          replace: sites/default/files
+        -
+          plugin: dom_str_replace
+          mode: attribute
+          xpath: //p
+          attribute_options:
+            name: class
+          search: text--lead
+          replace: 'text-lead text-ubc-blue-sea'
+        -
+          plugin: dom_inline_doc_handler
+        -
+          plugin: dom_inline_image_handler
+        -
+          plugin: dom
+          method: export
+        -
+          plugin: ws_transformations
+          method: ws_transformations
+  field_r_project_other_collab:
+    plugin: sub_process
+    source: field_other_collaborators
+    process:
+      format:
+        plugin: default_value
+        default_value: filtered_text
+      value:
+        -
+          plugin: dom
+          method: import
+          source: value
+        -
+          plugin: dom_str_replace
+          mode: attribute
+          xpath: //img
+          attribute_options:
+            name: src
+          search: sites/bpi.ubc.ca/files
+          replace: sites/default/files
+        -
+          plugin: dom_str_replace
+          mode: attribute
+          xpath: //a
+          attribute_options:
+            name: href
+          search: sites/bpi.ubc.ca/files
+          replace: sites/default/files
+        -
+          plugin: dom_str_replace
+          mode: attribute
+          xpath: //p
+          attribute_options:
+            name: class
+          search: text--lead
+          replace: 'text-lead text-ubc-blue-sea'
+        -
+          plugin: dom_inline_doc_handler
+        -
+          plugin: dom_inline_image_handler
+        -
+          plugin: dom
+          method: export
+        -
+          plugin: ws_transformations
+          method: ws_transformations
+  field_r_project_collab_sought:
+    plugin: sub_process
+    source: field_collaborators_sought_in_fo
+    process:
+      format:
+        plugin: default_value
+        default_value: filtered_text
+      value:
+        -
+          plugin: dom
+          method: import
+          source: value
+        -
+          plugin: dom_str_replace
+          mode: attribute
+          xpath: //img
+          attribute_options:
+            name: src
+          search: sites/bpi.ubc.ca/files
+          replace: sites/default/files
+        -
+          plugin: dom_str_replace
+          mode: attribute
+          xpath: //a
+          attribute_options:
+            name: href
+          search: sites/bpi.ubc.ca/files
+          replace: sites/default/files
+        -
+          plugin: dom_str_replace
+          mode: attribute
+          xpath: //p
+          attribute_options:
+            name: class
+          search: text--lead
+          replace: 'text-lead text-ubc-blue-sea'
+        -
+          plugin: dom_inline_doc_handler
+        -
+          plugin: dom_inline_image_handler
+        -
+          plugin: dom
+          method: export
+        -
+          plugin: ws_transformations
+          method: ws_transformations
+  field_r_project_feature_image:
+    plugin: sub_process
+    source: field_project_image
+    process:
+      target_id: fid
+      alt: alt
+      title: title
+      width: width
+      height: height
+  field_r_project_funder: field_funder
+  field_r_project_lead_other: field_lead
+  field_r_project_funding_amount: field_funding_amount
+  field_r_project_funding_program:
+    -
+      plugin: skip_on_empty
+      method: process
+      source: field_project_funders_partners
+    -
+      plugin: field_link
+      uri_scheme: 'https://'
+  field_r_project_research_theme:
+    plugin: migration_lookup
+    migration: migrate_research_theme_terms
+    source: field_research_area
+  field_r_project_researchers:
+    -
+      plugin: sub_process
+      source: field_ubc_researchers
+      process:
+        target_id:
+          plugin: migration_lookup
+          migration: migrate_profile
+          source: target_id
+          no_stub: true
+  field_r_project_lead:
+    -
+      plugin: sub_process
+      source: field_ubc_project_lead
+      process:
+        target_id:
+          plugin: migration_lookup
+          migration: migrate_profile
+          source: target_id
+          no_stub: true
+destination:
+  plugin: 'entity:node'
+  default_bundle: ubc_research_project
+migration_dependencies:
+  optional:
+    - migrate_profile
+    - migrate_public_files
+    - migrate_research_theme_terms
+    - migrate_users

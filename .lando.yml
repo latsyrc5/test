@@ -1,0 +1,14 @@
+name: vpr-d9.ubc.ca
+recipe: drupal9
+config:
+  webroot: web
+  php: '8.1'
+  via: nginx
+  composer_version: 2
+services:
+  database:
+    type: mariadb
+    creds:
+      user: vpr9
+      password: vpr9
+      database: vpr9

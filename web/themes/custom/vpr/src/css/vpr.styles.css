@@ -1,0 +1,20 @@
+/** @define vpr.custom.styles */
+
+/*
+* Custom, site-specific styles are added here
+*/
+
+
+/* Add normalize and general base styles */
+@import "tailwindcss/base";
+
+/* Import any node assets
+*
+* example: @import "../../node_modules/tiny-slider/dist/tiny-slider.css";
+*/
+
+/* Add site specific styles */
+@import "theme/vpr.custom.theme.css";
+
+/* Add utility classes last so that they take precedence */
+@import "tailwindcss/utilities";

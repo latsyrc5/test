@@ -1,0 +1,50 @@
+langcode: en
+status: true
+dependencies: {  }
+id: migrate_profile_role_terms
+class: null
+field_plugin_method: null
+cck_plugin_method: null
+migration_tags:
+  - 'Drupal 7'
+  - taxonomy
+migration_group: webservices
+label: 'Migrate Terms: Profile Role Terms from Drupal 7'
+source:
+  plugin: d7_taxonomy_term
+  scheme: public
+  key: drupal7
+process:
+  vid:
+    -
+      plugin: skip_on_value
+      source: vid
+      method: row
+      not_equals: true
+      value: 22
+    -
+      plugin: migration_lookup
+      migration: d7_taxonomy_vocabulary
+  name: name
+  description/value: description
+  description/format: format
+  weight: weight
+  parent_id:
+    -
+      plugin: skip_on_empty
+      method: process
+      source: parent
+    -
+      plugin: migration_lookup
+      migration: d7_taxonomy_term
+  parent:
+    plugin: default_value
+    default_value: 0
+    source: '@parent_id'
+  forum_container: is_container
+  changed: timestamp
+  langcode: language
+destination:
+  plugin: 'entity:taxonomy_term'
+  default_bundle: profile_role
+migration_dependencies: null

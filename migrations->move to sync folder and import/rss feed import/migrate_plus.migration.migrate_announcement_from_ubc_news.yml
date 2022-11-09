@@ -1,0 +1,81 @@
+langcode: en
+status: true
+dependencies: {}
+id: migrate_announcement_from_ubc_news
+class: null
+field_plugin_method: null
+cck_plugin_method: null
+migration_tags:
+  - 'cron import'
+migration_group: research
+label: 'Migrate Node: Announcements from UBC News.'
+source:
+  plugin: url
+  data_fetcher_plugin: http
+  data_parser_plugin: simple_xml
+  urls: 'https://news.ubc.ca/tag/covid-19/feed/'
+  ids:
+    title:
+      type: string
+  item_selector: /rss/channel/item
+  fields:
+    -
+      name: guid
+      label: GUID
+      selector: guid
+    -
+      name: title
+      label: Title
+      selector: title
+    -
+      name: pub_date
+      label: 'Publication date'
+      selector: pubDate
+    -
+      name: link
+      label: Link
+      selector: link
+    -
+      name: origin
+      label: 'Creator'
+      selector: 'dc:creator'
+    -
+      name: description
+      label: Description
+      selector: description
+    -
+      name: content
+      label: Content
+      selector: 'content:encoded'
+process:
+  type:
+    plugin: default_value
+    default_value: ubc_announcement
+  title: title
+  created:
+    plugin: format_date
+    from_format: 'D, d M Y H:i:s O'
+    to_format: U
+    source: pub_date
+  body/format:
+    plugin: default_value
+    default_value: filtered_text
+  body/summary: description
+  body/value: content
+  field_announcement_external_link: link
+  field_announcement_type:
+    plugin: default_value
+    default_value: 367
+  status:
+    plugin: default_value
+    default_value: 0
+  langcode:
+    plugin: default_value
+    default_value: en
+  uid:
+    plugin: default_value
+    default_value: 1
+destination:
+  plugin: 'entity:node'
+  default_bundle: ubc_announcement
+migration_dependencies: {}

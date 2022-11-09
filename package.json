@@ -1,0 +1,22 @@
+{
+  "name": "vpr-d9",
+  "version": "1.0.0",
+  "description": "Boilerplate VPR Drupal setup for Web Services",
+  "main": "index.js",
+  "scripts": {
+    "cypress:open": "cypress open"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ubc-web-services/vpr-d9.git"
+  },
+  "author": "James O'Toole",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ubc-web-services/vpr-d9/issues"
+  },
+  "homepage": "https://github.com/ubc-web-services/vpr-d9#readme",
+  "devDependencies": {
+    "cypress": "^9.2.0"
+  }
+}

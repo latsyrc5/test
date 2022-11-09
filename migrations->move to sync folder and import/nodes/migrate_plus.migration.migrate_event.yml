@@ -1,0 +1,192 @@
+langcode: en
+status: true
+dependencies:
+  enforced:
+    module:
+      - migrate_plus
+      - migrate_tools
+      - migrate_media_handler
+      - ws_transformations
+id: migrate_event
+class: null
+field_plugin_method: null
+cck_plugin_method: null
+migration_tags:
+  - 'Drupal 7'
+  - node
+migration_group: webservices
+label: 'Migrate Node: Events from Drupal 7.'
+source:
+  plugin: d7_node
+  scheme: public
+  key: drupal7
+  node_type: events
+process:
+  nid: tnid
+  type:
+    plugin: default_value
+    default_value: ubc_event
+  title: title
+  status: status
+  created: created
+  uid:
+    -
+      plugin: migration_lookup
+      migration: migrate_users
+      source: node_uid
+      no_stub: true
+    -
+      plugin: default_value
+      default_value: 1
+  changed: changed
+  promote: promote
+  sticky: sticky
+  revision_log: log
+  path/alias: alias
+  path/pathauto:
+    plugin: default_value
+    default_value: false
+  body:
+    plugin: sub_process
+    source: body
+    process:
+      format:
+        plugin: default_value
+        default_value: filtered_text
+      summary: summary
+      value:
+        -
+          plugin: dom
+          method: import
+          source: value
+        -
+          plugin: dom_str_replace
+          mode: attribute
+          xpath: //img
+          attribute_options:
+            name: src
+          search: sites/bpi.ubc.ca/files
+          replace: sites/default/files
+        -
+          plugin: dom_str_replace
+          mode: attribute
+          xpath: //a
+          attribute_options:
+            name: href
+          search: sites/bpi.ubc.ca/files
+          replace: sites/default/files
+        -
+          plugin: dom_str_replace
+          mode: attribute
+          xpath: //p
+          attribute_options:
+            name: class
+          search: text--lead
+          replace: 'text-lead text-ubc-blue-sea'
+        -
+          plugin: dom_inline_doc_handler
+        -
+          plugin: dom_inline_image_handler
+        -
+          plugin: dom
+          method: export
+        -
+          plugin: ws_transformations
+          method: ws_transformations
+  field_event_supporting:
+    plugin: sub_process
+    source: field_supporting_content
+    process:
+      format:
+        plugin: default_value
+        default_value: filtered_text
+      value:
+        -
+          plugin: dom
+          method: import
+          source: value
+        -
+          plugin: dom_str_replace
+          mode: attribute
+          xpath: //img
+          attribute_options:
+            name: src
+          search: sites/bpi.ubc.ca/files
+          replace: sites/default/files
+        -
+          plugin: dom_str_replace
+          mode: attribute
+          xpath: //a
+          attribute_options:
+            name: href
+          search: sites/bpi.ubc.ca/files
+          replace: sites/default/files
+        -
+          plugin: dom_str_replace
+          mode: attribute
+          xpath: //p
+          attribute_options:
+            name: class
+          search: text--lead
+          replace: 'text-lead text-ubc-blue-sea'
+        -
+          plugin: dom_inline_doc_handler
+        -
+          plugin: dom_inline_image_handler
+        -
+          plugin: dom
+          method: export
+        -
+          plugin: ws_transformations
+          method: ws_transformations
+  field_event_theme:
+    plugin: migration_lookup
+    migration: migrate_research_theme_terms
+    source: field_event_category
+  field_event_link:
+    -
+      plugin: skip_on_empty
+      method: process
+      source: field_external_link
+    -
+      plugin: field_link
+      uri_scheme: 'https://'
+  field_event_image:
+    plugin: sub_process
+    source: field_feature_image
+    process:
+      target_id: fid
+      alt: alt
+      title: title
+      width: width
+      height: height
+  field_event_image_teaser: field_image_teaser
+  field_event_location:
+    plugin: addressfield
+    source: field_event_location
+  field_event_date:
+    plugin: sub_process
+    source: field_event_date
+    process:
+      value:
+        plugin: format_date
+        source: value
+        from_format: 'Y-m-d H:i:s'
+        to_format: 'Y-m-d\TH:i:s'
+        from_timezone: America/Vancouver
+        to_timezone: America/Vancouver
+      end_value:
+        plugin: format_date
+        source: value2
+        from_format: 'Y-m-d H:i:s'
+        to_format: 'Y-m-d\TH:i:s'
+        from_timezone: America/Vancouver
+        to_timezone: America/Vancouver
+destination:
+  plugin: 'entity:node'
+  default_bundle: ubc_event
+migration_dependencies:
+  optional:
+    - migrate_public_files
+    - migrate_research_theme_terms
+    - migrate_users

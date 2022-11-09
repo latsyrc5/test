@@ -1,0 +1,13 @@
+# kraken.libraries.yml
+
+# Global Styles & Scripts
+global:
+  css:
+    theme:
+      css/vpr.drupal.views.min.css: { minified: true }
+      css/vpr.styles.min.css: { minified: true }
+  js:
+    js/vpr.misc.min.js: { minified: true }
+  dependencies:
+    - core/drupal
+    - core/drupalSettings

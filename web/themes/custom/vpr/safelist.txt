@@ -1,0 +1,7 @@
+/* tailwind utility classes added to this file will not be purged
+*
+* (custom styles are never purged)
+*
+* these are in addition to the utitilties preserved in the kraken-vpr theme safelist.txt
+*
+ */

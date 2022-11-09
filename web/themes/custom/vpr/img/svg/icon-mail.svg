@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" aria-labelledby="title-icon-mail" aria-describedby="description-icon-mail" role="img">
+  <title id="title-icon-mail">Mail</title>
+  <desc id="description-icon-mail">An envelope.</desc>
+  <path stroke="#0055b7" fill="none" stroke-miterlimit="10" d="M2 12l30 29 30-29M42 31.6L62 52M2 52l20-20.4" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"></path>
+  <path stroke="#0055b7" fill="none" stroke-width="2" stroke-miterlimit="10" d="M2 12h60v40H2z" stroke-linejoin="round" stroke-linecap="round"></path>
+</svg>

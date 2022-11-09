@@ -1,0 +1,244 @@
+{
+  "name": "drupal/recommended-project",
+  "description": "Project template for Drupal 8 projects with a relocated document root",
+  "type": "project",
+  "license": "GPL-2.0-or-later",
+  "homepage": "https://www.drupal.org/project/drupal",
+  "support": {
+    "docs": "https://www.drupal.org/docs/user_guide/en/index.html",
+    "chat": "https://www.drupal.org/node/314178"
+  },
+  "repositories": [{
+      "type": "composer",
+      "url": "https://packages.drupal.org/8"
+    },
+    {
+      "type": "package",
+      "package": {
+        "name": "fengyuanchen/cropper",
+        "version": "4.0.0",
+        "type": "drupal-library",
+        "dist": {
+          "url": "https://github.com/fengyuanchen/cropper/archive/v4.0.0.zip",
+          "type": "zip"
+        }
+      }
+    },
+    {
+      "type": "package",
+      "package": {
+        "name": "enyo/dropzone",
+        "version": "5.7.2",
+        "type": "drupal-library",
+        "dist": {
+          "url": "https://github.com/enyo/dropzone/archive/v5.7.2.zip",
+          "type": "zip"
+        }
+      }
+    },
+    {
+      "type": "package",
+      "package": {
+        "name": "harvesthq/chosen",
+        "version": "1.8.7",
+        "type": "drupal-library",
+        "extra": {
+          "installer-name": "chosen"
+        },
+        "dist": {
+          "url": "https://github.com/harvesthq/chosen/releases/download/v1.8.7/chosen_v1.8.7.zip",
+          "type": "zip"
+        },
+        "require": {
+          "composer/installers": "~1.0"
+        }
+      }
+    },
+    {
+      "type": "package",
+      "package": {
+        "name": "ckeditor/balloonpanel",
+        "version": "4.16.1",
+        "type": "drupal-library",
+        "dist": {
+          "url": "https://download.ckeditor.com/balloonpanel/releases/balloonpanel_4.16.1.zip",
+          "type": "zip"
+        }
+      }
+    },
+    {
+      "type": "package",
+      "package": {
+        "name": "ckeditor/a11ychecker",
+        "version": "1.1.1",
+        "type": "drupal-library",
+        "dist": {
+          "url": "https://download.ckeditor.com/a11ychecker/releases/a11ychecker_1.1.1.zip",
+          "type": "zip"
+        }
+      }
+    }
+  ],
+  "require": {
+    "ckeditor/a11ychecker": "^1.1",
+    "ckeditor/balloonpanel": "^4.14",
+    "composer/installers": "^1.7",
+    "cweagans/composer-patches": "^1.6.5",
+    "drupal/address": "^1.7",
+    "drupal/admin_toolbar": "^3.0",
+    "drupal/allowed_formats": "^1.3",
+    "drupal/anchor_link": "^1.7",
+    "drupal/antibot": "^1.4",
+    "drupal/auto_entitylabel": "^3.0@beta",
+    "drupal/block_exclude_pages": "^2.0",
+    "drupal/chosen": "^3.0",
+    "drupal/ckeditor_a11ychecker": "^2.0@alpha",
+    "drupal/ckeditor_balloonpanel": "^2.0@alpha",
+    "drupal/config_ignore": "^2.3",
+    "drupal/core-composer-scaffold": "^9.1",
+    "drupal/core-project-message": "^9.1",
+    "drupal/core-recommended": "^9.1",
+    "drupal/crop": "^2.0",
+    "drupal/date_popup": "^1.1",
+    "drupal/datetimehideseconds": "^1.1",
+    "drupal/default_content": "^2.0@alpha",
+    "drupal/devel": "^4.1",
+    "drupal/dropzonejs": "^2.1",
+    "drupal/easy_breadcrumb": "^2.0",
+    "drupal/editor_advanced_link": "^1.4",
+    "drupal/editor_button_link": "^1.0@beta",
+    "drupal/entity_reference_revisions": "^1.7",
+    "drupal/entityqueue": "^1.2",
+    "drupal/fakeobjects": "^1.1",
+    "drupal/field_group": "^3.1",
+    "drupal/file_delete": "^2.0",
+    "drupal/focal_point": "^1.4",
+    "drupal/formtips": "^1.4",
+    "drupal/fullcalendar_view": "^5.1",
+    "drupal/gin": "^3.0@alpha",
+    "drupal/gin_toolbar": "^1.0@beta",
+    "drupal/google_analytics": "^4.0",
+    "drupal/google_tag": "^1.4",
+    "drupal/image_widget_crop": "^2.3",
+    "drupal/inline_entity_form": "^1.0@RC",
+    "drupal/linkit": "^6.0@beta",
+    "drupal/linkit_media_library": "^1.0",
+    "drupal/maxlength": "^2.0@RC",
+    "drupal/media_bulk_upload": "^1.0@alpha",
+    "drupal/media_entity_file_replace": "^1.0@beta",
+    "drupal/menu_block": "^1.6",
+    "drupal/menu_position": "^1.0@beta",
+    "drupal/metatag": "^1.14",
+    "drupal/migrate_plus": "^5.1",
+    "drupal/migrate_tools": "^4.5",
+    "drupal/node_revision_delete": "^1.0@RC",
+    "drupal/oembed_providers": "^2.1",
+    "drupal/optional_end_date": "^1.1",
+    "drupal/paragraphs": "^1.12",
+    "drupal/pathauto": "^1.11",
+    "drupal/quick_node_clone": "^1.14",
+    "drupal/rebuild_cache_access": "^1.7",
+    "drupal/redirect": "^1.6",
+    "drupal/redis": "^1.4",
+    "drupal/responsive_table_filter": "^2.0",
+    "drupal/role_delegation": "^1.1",
+    "drupal/scheduler": "^1.3",
+    "drupal/scheduler_content_moderation_integration": "^1.3",
+    "drupal/simple_gmap": "^3.0",
+    "drupal/simple_sitemap": "^4.0",
+    "drupal/smtp": "^1.0",
+    "drupal/svg_image": "^1.14",
+    "drupal/text_summary_options": "^2.0",
+    "drupal/twig_tweak": "^3.1",
+    "drupal/view_unpublished": "^1.0",
+    "drupal/views_autosubmit": "^1.4",
+    "drupal/views_bulk_edit": "^2.6",
+    "drupal/webform": "^6.0",
+    "drush/drush": "^10.1",
+    "enyo/dropzone": "^5.7",
+    "harvesthq/chosen": "^1.8",
+    "oomphinc/composer-installers-extender": "^2.0",
+    "platformsh/config-reader": "^2.3",
+    "ubc-web-services/kraken-vpr": "^1.0",
+    "ubc-web-services/ubc-color-box-widget": "^1.0",
+    "ubc-web-services/ubc-column-options-widget": "^1.0.4",
+    "ubc-web-services/ubc_add_to_calendar": "^1.0@beta",
+    "ubc-web-services/ubc_chosen_style_tweaks": "^1.1",
+    "ubc-web-services/ubc_ckeditor_widgets": "^3.0@beta",
+    "ubc-web-services/ubc_claro_style_tweaks": "^1.0",
+    "ubc-web-services/ubc_d8_config_modules": "^5.0.0-beta1",
+    "ubc-web-services/ubc_vpr_shared_config": "^1.0@beta",
+    "wikimedia/composer-merge-plugin": "^2.0"
+  },
+  "conflict": {
+    "drupal/drupal": "*"
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "config": {
+    "sort-packages": true,
+    "allow-plugins": {
+      "composer/installers": true,
+      "cweagans/composer-patches": true,
+      "drupal/core-composer-scaffold": true,
+      "drupal/core-project-message": true,
+      "oomphinc/composer-installers-extender": true,
+      "wikimedia/composer-merge-plugin": true
+    }
+  },
+  "extra": {
+    "drupal-scaffold": {
+      "locations": {
+        "web-root": "web/"
+      }
+    },
+    "installer-paths": {
+      "web/core": ["type:drupal-core"],
+      "web/libraries/{$name}": [
+        "type:drupal-library",
+        "harvesthq/chosen"
+      ],
+      "web/modules/contrib/{$name}": ["type:drupal-module"],
+      "web/profiles/contrib/{$name}": ["type:drupal-profile"],
+      "web/themes/contrib/{$name}": ["type:drupal-theme"],
+      "drush/Commands/contrib/{$name}": ["type:drupal-drush"],
+      "web/modules/custom/{$name}": ["type:drupal-custom-module"],
+      "web/themes/custom/{$name}": ["type:drupal-custom-theme"]
+    },
+    "installer-types": [
+      "drupal-library"
+    ],
+    "merge-plugin": {
+      "include": [
+        "web/modules/contrib/webform/composer.libraries.json"
+      ]
+    },
+    "drupal-core-project-message": {
+      "include-keys": ["homepage", "support"],
+      "post-create-project-cmd-message": [
+        "<bg=blue;fg=white>                                                         </>",
+        "<bg=blue;fg=white>  Congratulations, you’ve installed the Drupal codebase  </>",
+        "<bg=blue;fg=white>  from the drupal/recommended-project template!          </>",
+        "<bg=blue;fg=white>                                                         </>",
+        "",
+        "<bg=yellow;fg=black>Next steps</>:",
+
+        "  * Install the site: https://www.drupal.org/docs/8/install",
+        "  * Read the user guide: https://www.drupal.org/docs/user_guide/en/index.html",
+        "  * Get support: https://www.drupal.org/support",
+        "  * Get involved with the Drupal community:",
+        "      https://www.drupal.org/getting-involved",
+        "  * Remove the plugin that prints this message:",
+        "      composer remove drupal/core-project-message"
+      ]
+    },
+    "patches": {
+      "drupal/core": {
+        "Drupal core taxonomy not working with grouped filters: https://www.drupal.org/project/drupal/issues/1810148": "https://www.drupal.org/files/issues/1810148-58.patch"
+      },
+      "drupal/fakeobjects": {
+        "Allow fake objects to use the ckeditor.fakeobjects library location: https://www.drupal.org/project/fakeobjects/issues/3208959": "https://git.drupalcode.org/project/fakeobjects/-/merge_requests/2.diff"
+      }
+    }
+  }
+}
